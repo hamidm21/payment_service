@@ -12,7 +12,7 @@ var http = require('http');
 require('dotenv').config();
 const config = require('../lib/config/config');
 // const { consumer } = require('../lib/utils/kafka');
-// const { kafkaInit } = require('../lib/handlers/kafka_handler');
+const { kafkaInit } = require('../lib/handlers/kafka_handler');
 const pid = process.pid;
 
 /**
@@ -37,6 +37,8 @@ server.listen(port , async () => {
 server.on('error', onError);
 server.on('listening', onListening);
 debug(`server is running on port ${config.PORT}`);
+
+kafkaInit();
 
 /**
  * Normalize a port into a number, string, or false.
